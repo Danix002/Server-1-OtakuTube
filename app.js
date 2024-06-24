@@ -38,6 +38,13 @@ app.get('/genre', async (req, res) => {
 });
 
 /** MODIFIED */
+app.get('/allAnimeByGenre', async (req, res) => {
+	const result = await scapper.listOfAnimeByGenre();
+	res.header('Content-Type', 'application/json');
+	res.send(JSON.stringify(result, null, 4));
+});
+
+/** MODIFIED */
 app.get('/allAnime/:page', async (req, res) => {
 	const result = await scapper.allAnime(req.params.page);
 	res.header('Content-Type', 'application/json');
