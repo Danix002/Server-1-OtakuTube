@@ -33,9 +33,9 @@ To use this API, make requests to the following endpoints based on your needs.
 
    	/allAnime/:page
 
-    	/genre
+	/genre
 
-     	/genre/:genre/:page
+	/genre/:genre/:page
 	
 
 **GET | Popular Anime 🍿**
