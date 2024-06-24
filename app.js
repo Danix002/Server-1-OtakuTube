@@ -81,7 +81,7 @@ app.get('/getEpisodes/:query', async (req, res) => {
 	res.send(JSON.stringify(result, null, 4));
 });
 
-port = env.PORT || 3000;
+port = 3000;
 app.listen(port, () => {
 	console.log(`Listening to port ${port}`);
 });
