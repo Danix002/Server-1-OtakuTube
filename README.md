@@ -1,64 +1,46 @@
 # Gogoanime-API v.1🧬
-This is a personal project that I am working on 🧰
-it is a simple api for scrapping 🔪 gogoanime.so 
 
-**How to use the API ?**
-<br />
+## API Information
 
-🔢 step 1
-```
-Download the repo 🟢
-```
+This API is hosted on a server provided by Render. If the server becomes inactive or experiences issues, please contact the repository owners for assistance.
 
-🔢 step 2
-```
-npm install
-```
-this should install 🔻 all the dependencies required for running this project 📂
+## Contact
 
-<br />
-🔢 step 3
+For any issues or questions, please reach out to:
 
-```
-npm start
-```
-Now you should get a output similar to this
-
-```
-Listening to port 3000
-```
-🥳 Yay, our API server is running 🏃‍♂️💨
-
-🔢 step 4 : Now visit
-```
-http://127.0.0.1:3000/
-```
-and you should be greeted with
-```
-👋 Hello world🌍, Welcome to 🦄 GogoAnime API 🧬
-```
-
+- Daniela Magrì
+- Alessandro Scicolone
 
 # API Documentation 📑
 
-*Running on localhost*
+## Usage
+
+To use this API, make requests to the following endpoints based on your needs.
 
 **Available routes**
 	
-	/Popular/:page_no
+	/Popular/:page
 	
-	/NewSeasons/page_no
+	/NewSeasons/:page
 	
-	/getAnime/anime_id
+	/getAnime/:anime_id
 	
-	/getEpisode/episode_id
+	/getEpisode/:episode_id
 	
-	/search/search_query
+	/search/:search_query
+ 	
+  	/getEpisodes/:episode_id
+
+   	/allAnime/:page
+
+    	/genre
+
+     	/genre/:genre/:page
 	
 
 **GET | Popular Anime 🍿**
 ```
-http://127.0.0.1:3000/Popular/:page
+https://server-1-otakutube.onrender.com/Popular/:page
 ```
  >this will return all the popular anime
 ```
@@ -74,7 +56,7 @@ http://127.0.0.1:3000/Popular/:page
 
 **GET | New Seasons 🆕**
 ```
-http://127.0.0.1:3000/NewSeasons/:page
+https://server-1-otakutube.onrender.com/NewSeasons/:page
 ```
  >this will return all anime with new seasons available
 ```
@@ -89,7 +71,7 @@ http://127.0.0.1:3000/NewSeasons/:page
 ```
 **GET | Anime 🕵️‍♂️**
 ```
-http://127.0.0.1:3000/getAnime/:anime_id
+https://server-1-otakutube.onrender.com/getAnime/:anime_id
 ```
  >this will return the anime **name ,thumbnail image ,about  ?** and **episode_id** for all the episodes available for that anime
 ```
@@ -110,7 +92,7 @@ http://127.0.0.1:3000/getAnime/:anime_id
 ```
 **GET  | Anime Episode 📽**
 ```
-http://127.0.0.1:3000/getEpisode/:episode_id
+https://server-1-otakutube.onrender.com/getEpisode/:episode_id
 ```
  >this will return the downloadable  🔻 link for the episode
 ```
@@ -126,7 +108,7 @@ http://127.0.0.1:3000/getEpisode/:episode_id
 
 **GET  | Search Anime 📽**
 ```
-http://127.0.0.1:3000/search/:search-query
+https://server-1-otakutube.onrender.com/search/:search-query
 ```
  >this will return all the anime related to the search
 ```
@@ -159,5 +141,5 @@ Feel free to open issues or submit pull-requests to help me improving my work.
 
 **🤖 Author**
 <br />
-Dhanush Suvarna
+This project was created by Dhanush Suvarna and modified according to the needs of the application using it by Daniela Magrì and Alessandro Scicolone.
 
