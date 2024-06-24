@@ -26,19 +26,6 @@ async function newSeason(page) {
 	return await anime_list;
 }
 
-/** MODIFIED */
-async function listOfAnimeByGenre() {
-	genresList = genre();
-
-	const promises = genresList.map(async (value, index) => {
-		anime = await byGenre(value, 0);
-        return { anime };
-    });
-
-    const listByGenre = await Promise.all(promises);
-    return listByGenre;
-}
-
 async function byGenre(genre, page) {
 	var anime_list = [];
 
@@ -58,7 +45,6 @@ async function byGenre(genre, page) {
 
 	return await anime_list;
 }
-
 
 /** MODIFIED */
 function genre() {
@@ -364,7 +350,6 @@ module.exports = {
 	genre,
 	allAnime,
 	listOfEpisodes,
-	listOfAnimeByGenre,
 
 	newSeason,
 	search,
