@@ -11,15 +11,16 @@ app.get('/', (req, res) => {
         <h1>👋 Hello world🌍, Welcome to 🦄 GogoAnime API 🧬</h1>
         <h2>Available routes:</h2>
         <ul>
-            <li>/Popular</li>
-            <li>/NewSeasons</li>
-            <li>/search/:query</li>
-            <li>/getAnime/:animeId</li>
-            <li>/getEpisode/:episodeId</li>
-            <li>/genre</li>
-            <li>/allAnime</li>
-            <li>/getEpisodes/:listOfEpisodeId</li>
-        </ul>
+			<li>/Popular/:page</li>
+			<li>/NewSeasons/:page</li>
+			<li>/getAnime/:anime_id</li>
+			<li>/getEpisode/:episode_id</li>
+			<li>/search/:search_query</li>
+			<li>/getEpisodes/:episode_id</li>
+			<li>/allAnime/:page</li>
+			<li>/genre</li>
+			<li>/genre/:genre/:page</li>
+		</ul>
     `);
 });
 
