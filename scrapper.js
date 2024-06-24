@@ -5,7 +5,7 @@ const userAgent = require('user-agents');
 
 // https://www3.gogoanimes.fi/
 // https://gogoanime.run
-const baseUrl = 'https://gogoanime.run';
+const baseUrl = 'https://server-1-otakutube.onrender.com';
 
 async function newSeason(page) {
 	var anime_list = [];
@@ -165,6 +165,20 @@ async function popular(page) {
     }
 
     return anime_list;
+}
+
+/** MODIFIED */
+async function fetchAnimeDetails(link) {
+    try {
+        const anime_about_res = await axios.get(`${baseUrl}/${link}`);
+        const body_anime = anime_about_res.data;
+        const $ = cheerio.load(body_anime);
+        const anime_about = $('div.anime_info_body_bg div.description').text();
+        return anime_about;
+    } catch (error) {
+        console.error(`Errore nel caricamento delle informazioni aggiuntive per ${link}:`, error);
+        return null;
+    }
 }
 
 /** MODIFIED */
