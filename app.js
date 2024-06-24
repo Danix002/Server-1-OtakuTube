@@ -7,9 +7,20 @@ const app = express();
 app.use(cors());
 
 app.get('/', (req, res) => {
-	res.send(
-		'👋 Hello world🌍, Welcome to 🦄 GogoAnime API 🧬 </br> Available routes : /Popular , /NewSeasons , /search/:query , /getAnime/:animeId , /getEpisode/:episodeId, ADDED BY DANIELA MAGRi AND ALESSANDRO SCICOLONE : /genre , /allAnime', '/getEpisodes/:listOfEpisodeId'
-	);
+	res.send(`
+        <h1>👋 Hello world🌍, Welcome to 🦄 GogoAnime API 🧬</h1>
+        <h2>Available routes:</h2>
+        <ul>
+            <li>/Popular</li>
+            <li>/NewSeasons</li>
+            <li>/search/:query</li>
+            <li>/getAnime/:animeId</li>
+            <li>/getEpisode/:episodeId</li>
+            <li>/genre</li>
+            <li>/allAnime</li>
+            <li>/getEpisodes/:listOfEpisodeId</li>
+        </ul>
+    `);
 });
 
 app.get('/Popular/:page', async (req, res) => {
