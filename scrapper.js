@@ -133,38 +133,33 @@ function genre() {
 
 /** MODIFIED */
 async function popular(page) {
-	var anime_list = [];
+	const anime_list = [];
 
-	try {
+    try {
         const res = await axios.get(`${baseUrl}/popular.html?page=${page}`);
         const body = res.data;
         const $ = cheerio.load(body);
 
         const items = $('div.main_body div.last_episodes ul.items li').toArray();
 
-        for (let element of items) {
+        const animePromises = items.map(async (element) => {
             const $elements = $(element);
             const name = $elements.find('p a').text();
             const img = $elements.find('div a img').attr('src');
             const link = $elements.find('div a').attr('href');
 
-            try {
-                const anime_about_res = await axios.get(`${baseUrl}/${link}`);
-                const body_anime = anime_about_res.data;
-                const $_ = cheerio.load(body_anime);
-                const anime_about = $_('div.anime_info_body_bg div.description').text();
+            const anime_about = await fetchAnimeDetails(link);
 
-                const anime_name = {
-                    name: name,
-                    img_url: img,
-                    anime_id: link.slice(10),
-                    description: anime_about
-                };
-                anime_list.push(anime_name);
-            } catch (error) {
-                console.error(`Errore nel caricamento delle informazioni aggiuntive per ${link}:`, error);
-            }
-        }
+            return {
+                name: name,
+                img_url: img,
+                anime_id: link.slice(10),
+                description: anime_about
+            };
+        });
+
+        const animeDetails = await Promise.all(animePromises);
+        anime_list.push(...animeDetails.filter(anime => anime.description !== null));
     } catch (error) {
         console.error(`Errore nel caricamento della pagina ${page}:`, error);
     }
