@@ -5,7 +5,7 @@ const userAgent = require('user-agents');
 
 // https://www3.gogoanimes.fi/
 // https://gogoanime.run
-const baseUrl = 'https://server-1-otakutube.onrender.com';
+const baseUrl = 'https://gogoanime.run';
 
 async function newSeason(page) {
 	var anime_list = [];
@@ -133,53 +133,44 @@ function genre() {
 
 /** MODIFIED */
 async function popular(page) {
-	const anime_list = [];
+	var anime_list = [];
 
-    try {
+	try {
         const res = await axios.get(`${baseUrl}/popular.html?page=${page}`);
         const body = res.data;
         const $ = cheerio.load(body);
 
-        const items = $('div.main_body div.last_episodes ul.items li').toArray();
+        const items = $(`div.main_body div.last_episodes ul.items li`).toArray();
 
-        const animePromises = items.map(async (element) => {
+        for (let element of items) {
             const $elements = $(element);
             const name = $elements.find('p a').text();
             const img = $elements.find('div a img').attr('src');
             const link = $elements.find('div a').attr('href');
 
-            const anime_about = await fetchAnimeDetails(link);
+            try {
+                const anime_about_res = await axios.get(`${baseUrl}/${link}`);
+                const body_anime = anime_about_res.data;
+                const $_ = cheerio.load(body_anime);
+                const anime_about = $_(`div.anime_info_body_bg div.description`).text();
 
-            return {
-                name: name,
-                img_url: img,
-                anime_id: link.slice(10),
-                description: anime_about
-            };
-        });
-
-        const animeDetails = await Promise.all(animePromises);
-        anime_list.push(...animeDetails.filter(anime => anime.description !== null));
+                const anime_name = {
+                    name: name,
+                    img_url: img,
+                    anime_id: link.slice(10),
+                    description: anime_about
+                };
+                anime_list.push(anime_name);
+            } catch (error) {
+                console.error(`Errore nel caricamento delle informazioni aggiuntive per ${link}:`, error);
+            }
+        }
     } catch (error) {
-        console.error(`Errore nel caricamento della pagina ${page}:`, error);
+        console.error('Errore nel caricamento della pagina ${page}:', error);
     }
 
     return anime_list;
-}
-
-/** MODIFIED */
-async function fetchAnimeDetails(link) {
-    try {
-        const anime_about_res = await axios.get(`${baseUrl}/${link}`);
-        const body_anime = anime_about_res.data;
-        const $ = cheerio.load(body_anime);
-        const anime_about = $('div.anime_info_body_bg div.description').text();
-        return anime_about;
-    } catch (error) {
-        console.error(`Errore nel caricamento delle informazioni aggiuntive per ${link}:`, error);
-        return null;
-    }
-}
+} 
 
 /** MODIFIED */
 async function allAnime(page) {
