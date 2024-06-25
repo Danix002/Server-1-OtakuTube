@@ -2,11 +2,9 @@ const cheerio = require('cheerio');
 const axios = require('axios');
 const userAgent = require('user-agents');
 const puppeteer = require('puppeteer-extra');
-const AdblockerPlugin = require('puppeteer-extra-plugin-adblocker')
-const adblocker = AdblockerPlugin({
-  blockTrackers: true 
-})
-puppeteer.use(adblocker)
+const AdblockerPlugin = require('puppeteer-extra-plugin-adblocker');
+
+puppeteer.use(AdblockerPlugin());
 
 // https://www3.gogoanimes.fi/
 // https://gogoanime.run
@@ -318,7 +316,7 @@ async function listOfEpisodes(list_episode_id) {
 
 /** MODIFIED */
 async function getDownloadLink(episode_link) {
-	const browser = await puppeteer.launch({ headless: true });
+	const browser = await puppeteer.launch({ headless: "new" });
 	const page = await browser.newPage();
 	await page.setUserAgent(userAgent.random().toString());
 	await page.goto(episode_link, { waitUntil: 'networkidle0' });
