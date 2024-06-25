@@ -317,7 +317,7 @@ async function listOfEpisodes(list_episode_id) {
 /** MODIFIED */
 async function getDownloadLink(episode_link) {
 	const browser = await puppeteer.launch({ 
-		headless: true,  
+		headless: "new",  
         executablePath: '/opt/render/project/.render/chrome/opt/google/chrome/google-chrome'
 	});
 	const page = await browser.newPage();
