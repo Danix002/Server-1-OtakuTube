@@ -1,7 +1,12 @@
 const cheerio = require('cheerio');
 const axios = require('axios');
-const puppeteer = require('puppeteer');
 const userAgent = require('user-agents');
+const puppeteer = require('puppeteer-extra');
+const pluginStealth = require('puppeteer-extra-plugin-stealth');
+const AdblockerPlugin = require('puppeteer-extra-plugin-adblocker');
+
+puppeteer.use(pluginStealth());
+puppeteer.use(AdblockerPlugin());
 
 // https://www3.gogoanimes.fi/
 // https://gogoanime.run
