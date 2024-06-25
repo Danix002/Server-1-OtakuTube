@@ -316,7 +316,10 @@ async function listOfEpisodes(list_episode_id) {
 
 /** MODIFIED */
 async function getDownloadLink(episode_link) {
-	const browser = await puppeteer.launch({ headless: "new" });
+	const browser = await puppeteer.launch({ 
+		headless: true,  
+        executablePath: '/opt/render/project/.render/chrome/opt/google/chrome/google-chrome'
+	});
 	const page = await browser.newPage();
 	await page.setUserAgent(userAgent.random().toString());
 	await page.goto(episode_link, { waitUntil: 'networkidle0' });
