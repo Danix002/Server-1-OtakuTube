@@ -49,6 +49,26 @@ async function byGenre(genre, page) {
 	return await anime_list;
 }
 
+async function simplePopular(page) {
+	var anime_list = [];
+
+	res = await axios.get(`${baseUrl}/popular.html?page=${page}`);
+	const body = await res.data;
+	const $ = cheerio.load(body);
+
+	$('div.main_body div.last_episodes ul.items li').each((index, element) => {
+		$elements = $(element);
+		name = $elements.find('p').find('a');
+		img = $elements.find('div').find('a').find('img').attr('src');
+		link = $elements.find('div').find('a').attr('href');
+		anime_name = { name: name.html(), img_url: img, anime_id: link.slice(10) };
+		anime_list.push(anime_name);
+	});
+
+	return await anime_list;
+}
+
+
 /** MODIFIED */
 function genre() {
 	var genre_list = [
@@ -280,7 +300,7 @@ async function watchAnime(episode_id) {
 
         if (episode_link !== undefined) {
             ep = await getDownloadLink(episode_link);
-            index = 0; 
+            index = parseInt(episode_id.split('-').pop()); 
             watchAnime_result = { index, ep };
             return watchAnime_result;
         } else {
@@ -356,6 +376,7 @@ module.exports = {
 	genre,
 	allAnime,
 	listOfEpisodes,
+	simplePopular,
 
 	newSeason,
 	search,

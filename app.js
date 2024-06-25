@@ -30,6 +30,12 @@ app.get('/Popular/:page', async (req, res) => {
 	res.send(JSON.stringify(result, null, 4));
 });
 
+app.get('/PopularNoDescription/:page', async (req, res) => {
+	const result = await scapper.simplePopular(req.params.page);
+	res.header('Content-Type', 'application/json');
+	res.send(JSON.stringify(result, null, 4));
+});
+
 /** MODIFIED */
 app.get('/genre', async (req, res) => {
 	const result = await scapper.genre();
