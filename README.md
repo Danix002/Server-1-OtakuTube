@@ -2,14 +2,11 @@
 
 ## API Information
 
-This API is hosted on a server provided by Render. If the server becomes inactive or experiences issues, please contact the repository owners for assistance.
+This API is hosted on a server provided by Render, check it out: "[https://server-1-otakutube.onrender.com](https://server-1-otakutube.onrender.com)". If the server becomes inactive or experiences issues, please contact the repository owners for assistance.
 
 ## Contact
 
-For any issues or questions, please reach out to:
-
-- Daniela Magrì
-- Alessandro Scicolone
+For any questions or inquiries, please contact [daniela.adelina94@gmail.com](mailto:daniela.adelina94@gmail.com).
 
 # API Documentation 📑
 
